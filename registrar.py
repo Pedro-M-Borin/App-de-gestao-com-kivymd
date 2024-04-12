@@ -99,7 +99,6 @@ class RegisterTab(Screen):
             on_press=self.switch_to_login_screen
         )
 
-       
         self.add_widget(self.admin_code)
         self.add_widget(self.name_field)
         self.add_widget(self.email)
@@ -170,7 +169,17 @@ class RegisterTab(Screen):
 
         # Verificar se as senhas coincidem
         if senha != confirmar_senha:
-            print("As senhas não coincidem")
+            # Exibir mensagem de erro
+            dialog = MDDialog(
+                text="As senhas não coincidem. Por favor, tente novamente.",
+                buttons=[
+                    MDFlatButton(
+                        text="OK",
+                        on_release=lambda x: dialog.dismiss()
+                    )
+                ]
+            )
+            dialog.open()
             return
 
         try:
@@ -179,7 +188,6 @@ class RegisterTab(Screen):
             val = (codigo_adm, nome, email, senha)
             self.mycursor.execute(sql, val)
             self.mydb.commit()
-            print("Usuário registrado com sucesso")
 
             # Exibir mensagem de sucesso
             dialog = MDDialog(

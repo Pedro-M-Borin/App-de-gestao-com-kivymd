@@ -1,15 +1,15 @@
-import mysql.connector
 from kivy.uix.screenmanager import ScreenManager
+from kivy.uix.screenmanager import Screen
 from kivymd.app import MDApp
-from kivymd.uix.screen import Screen
 from kivymd.uix.textfield import MDTextField
 from kivymd.uix.button import MDRaisedButton, MDFlatButton, MDIconButton
 from kivymd.uix.label import MDLabel
-from kivymd.uix.dialog import MDDialog
 from registrar import RegisterTab  # Importar a classe RegisterTab do arquivo registrar.py
 
 class LoginApp(MDApp):
-    def build(self):        
+    def build(self):
+        self.icon = 'logo.png'  # Definir o caminho para o ícone
+
         self.screen_manager = ScreenManager()
 
         self.login_screen = Screen(name='login')
